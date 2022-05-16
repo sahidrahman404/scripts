@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#subs.py --cli --auto "$1"
+
+#for i in *.opus; do ffmpeg -i "$i" -f mp3 "${i%}.mp3"; done
+#for i in *.mp4; do subs.py --cli --auto "$i"; done
+value=*."$1"
+for i in $value; do subs.py --cli --auto "$i"; done
+
+
+
+
