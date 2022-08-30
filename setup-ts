@@ -1,0 +1,37 @@
+#!/bin/bash
+pnpm init
+pnpm add -D ts-node-dev typescript @types/node@"*" eslint
+pnpm tsc --init
+
+cat > tsconfig.json <<EOL
+  {
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es2016",
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "outDir": "build",
+      "baseUrl": ".",
+      "rootDirs": [
+        "src/"
+      ],
+      "types": [
+        "node"
+      ]
+    },
+    "include": [
+      "src/**/*"
+    ]
+  }
+EOL
+
+mkdir -p src
+cat > src/index.ts <<EOL
+  console.log('hello world!');
+EOL
+
+sed -i 's/"test".*"/\"dev\": \"ts-node-dev --respawn --transpile-only src\/index.ts\",\n\t\"build\": \"tsc --build\"/g' package.json
+
+./node_modules/.bin/eslint --init
