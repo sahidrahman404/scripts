@@ -35,3 +35,9 @@ EOL
 sed -i 's/"test".*"/\"dev\": \"ts-node-dev --respawn --transpile-only src\/index.ts\",\n\t\"build\": \"tsc --build\"/g' package.json
 
 ./node_modules/.bin/eslint --init
+
+touch .gitignore
+cat > .gitignore <<EOL
+/node_modules/
+*.log
+EOL
