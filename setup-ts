@@ -7,7 +7,7 @@ pnpm tsc --init
 npx husky install
 npx husky add .husky/pre-commit "pnpm validate:check-types && lint-staged && pnpm validate:build"
 
-cat > tsconfig.json <<EOL
+cat >tsconfig.json <<EOL
   {
     "compilerOptions": {
       "module": "commonjs",
@@ -32,26 +32,24 @@ cat > tsconfig.json <<EOL
 EOL
 
 mkdir -p src
-cat > src/index.ts <<EOL
+cat >src/index.ts <<EOL
   console.log('hello world!');
 EOL
 
 sed -i 's/"test".*"/\"dev\": \"ts-node-dev --respawn --transpile-only src\/index.ts\",\n\t\"build\": \"tsc --build\",\"start\": \"node .\/build\/index.js\",\n\t\"prettier\": \"prettier --ignore-path .gitignore \\"**\/*.+(js|json|ts|tsx)\\"\",\n\t\"format\": \"pnpm prettier --write\",\n\t\"validate\": \"concurrently pnpm:validate:*\",\n\t\"validate:check-types\": \"tsc\",\n\t\"validate:check-format\": \"pnpm prettier --list-different\",\n\t\"validate:lint\": \"eslint --ignore-path .gitignore --ext .js,.ts,.tsx .\",\n\t\"validate:build\": \"tsc --build\",\n\t\"prepare\": \"husky install\"/g' package.json
 
 touch .lintstagedrc.json
-cat > .lintstagedrc.json <<EOL
+cat >.lintstagedrc.json <<EOL
 {
   "*.+(js|jsx|ts|tsx)": ["eslint"],
   "**/*.+(js|json|ts|tsx)": ["prettier --write", "git add"]
 }
 EOL
 
-
-
 sed -i 's/"plugin.*ded"/\n\t\"plugin:@typescript-eslint\/recommended\",\n\t\"prettier"/g' .eslintrc.json
 
 touch .gitignore
-cat > .gitignore <<EOL
+cat >.gitignore <<EOL
 /node_modules/
 /build/
 *.log
