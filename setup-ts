@@ -1,6 +1,6 @@
 #!/bin/bash
 pnpm init
-pnpm add -D ts-node-dev typescript @types/node@"*" eslint concurrently husky lint-staged eslint-config-prettier
+pnpm add -D ts-node-dev typescript @types/node@"*" eslint concurrently husky lint-staged eslint-config-prettier prettier
 ./node_modules/.bin/eslint --init
 git init
 pnpm tsc --init
