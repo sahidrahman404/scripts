@@ -5,7 +5,7 @@ pnpm add -D ts-node-dev typescript @types/node@"*" eslint concurrently husky lin
 git init
 pnpm tsc --init
 npx husky install
-npx husky add .husky/pre-commit "pnpm validate:check-types && lint-staged && pnpm validate:build"
+npx husky add .husky/pre-commit "pnpm validate:check-types && pnpm lint-staged && pnpm validate:build"
 
 cat >tsconfig.json <<EOL
   {
