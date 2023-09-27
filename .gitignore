@@ -3,3 +3,13 @@ pylsp
 pathman
 snaplet
 webi
+transformers-cli
+tabulate
+sqlformat
+nltk
+mycli
+isympy
+huggingface-cli
+ctest
+cpack
+cmake
